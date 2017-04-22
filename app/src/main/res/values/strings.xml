@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AlcaROL</string>
+    <string name="mis_estilos">Mis estilos</string>
+    <string name="mis_grupos">Mis Grupos</string>
 </resources>

@@ -11,7 +11,23 @@
     tools:context="com.bemen3.albert.alcarol.MainActivity">
 
     <TextView
+        android:id="@+id/titulo_activity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/mis_estilos"
+        android:layout_centerHorizontal="true"/>
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titulo_activity" />
+
+    <Button
+        android:id="@+id/btnMisGrupos"
+        android:layout_below="@id/listview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mis_grupos"/>
+
 </RelativeLayout>
