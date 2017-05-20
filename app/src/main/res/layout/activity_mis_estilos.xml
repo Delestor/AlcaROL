@@ -20,14 +20,24 @@
     <ListView
         android:id="@+id/listview"
         android:layout_width="wrap_content"
+        android:layout_height="120pt"
+        android:layout_below="@+id/titulo_activity"
+        />
+
+    <Button
+        android:id="@+id/btnNuevoEstilo"
+        android:layout_below="@id/listview"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titulo_activity" />
+        android:text="@string/nuevo_estilo"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:id="@+id/btnMisGrupos"
-        android:layout_below="@id/listview"
-        android:layout_width="wrap_content"
+        android:layout_below="@id/btnNuevoEstilo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/mis_grupos"/>
+        android:text="@string/mis_grupos"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

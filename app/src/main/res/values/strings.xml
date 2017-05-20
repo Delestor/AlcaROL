@@ -2,4 +2,5 @@
     <string name="app_name">AlcaROL</string>
     <string name="mis_estilos">Mis estilos</string>
     <string name="mis_grupos">Mis Grupos</string>
+    <string name="nuevo_estilo">Nuevo Estilo</string>
 </resources>
