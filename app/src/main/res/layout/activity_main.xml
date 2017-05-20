@@ -11,23 +11,39 @@
     tools:context="com.bemen3.albert.alcarol.MainActivity">
 
     <TextView
-        android:id="@+id/titulo_activity"
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mis_estilos"
-        android:layout_centerHorizontal="true"/>
+        android:text="Restaurant" />
 
-    <ListView
-        android:id="@+id/listview"
+    <EditText
+        android:layout_below="@+id/tvTitulo"
+        android:id="@+id/etUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titulo_activity" />
+        android:hint="username"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_below="@id/etUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="password"
+        android:inputType="textPassword"/>
 
     <Button
-        android:id="@+id/btnMisGrupos"
-        android:layout_below="@id/listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mis_grupos"/>
+        android:text="Log In"
+        android:id="@+id/btnLogIn"
+        android:layout_below="@+id/etPassword"
+        android:onClick="logInAction"/>
+
+    <TextView
+        android:layout_below="@id/btnLogIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuarios validos: albert\nsu password es 1234"/>
+
 
 </RelativeLayout>
