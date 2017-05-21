@@ -174,7 +174,7 @@ public class MisEstilosActivity extends AppCompatActivity {
     }
 
     public void crearNuevoEstilo(View view){
-        Intent intent = new Intent(getApplicationContext(), null);
+        Intent intent = new Intent(getApplicationContext(), CrearNuevoEstiloActivity.class);
         startActivity(intent);
     }
 

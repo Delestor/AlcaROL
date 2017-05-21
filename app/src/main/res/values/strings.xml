@@ -3,4 +3,7 @@
     <string name="mis_estilos">Mis estilos</string>
     <string name="mis_grupos">Mis Grupos</string>
     <string name="nuevo_estilo">Nuevo Estilo</string>
+    <string name="crear_nuevo_estilo">Creación Nuevo Estilo</string>
+    <string name="guardar_estilo">Guardar</string>
+    <string name="entra_nombre_nuevo_estilo">Nombre del Estilo</string>
 </resources>

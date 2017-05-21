@@ -10,4 +10,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.bemen3.albert.alcarol.CrearNuevoEstiloActivity">
 
+    <TextView
+        android:id="@+id/titulo_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/crear_nuevo_estilo"
+        android:layout_centerHorizontal="true"/>
+    <EditText
+        android:id="@+id/etNombreNuevoEstilo"
+        android:layout_below="@+id/titulo_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/entra_nombre_nuevo_estilo"/>
+
+    <ListView
+        android:id="@+id/listviewAtributosEstilos"
+        android:layout_width="wrap_content"
+        android:layout_height="120pt"
+        android:layout_below="@+id/etNombreNuevoEstilo"
+        />
+
+    <Button
+        android:id="@+id/btnGuardarEstilo"
+        android:layout_below="@id/listviewAtributosEstilos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar_estilo"
+        android:layout_centerHorizontal="true"
+        android:onClick="guardarAtributosNuevoEstilo"/>
+
 </RelativeLayout>
