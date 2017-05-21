@@ -1,9 +1,13 @@
 package com.bemen3.albert.alcarol;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,6 +36,8 @@ public class CrearNuevoEstiloActivity extends AppCompatActivity {
     private ListView listView;
     private Usuario usuarioApp;
     private EditText etNombreEstilo;
+    private int height;
+    private int width;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class CrearNuevoEstiloActivity extends AppCompatActivity {
         listaAtributos = new ArrayList<>();
         etNombreEstilo = (EditText)findViewById(R.id.etNombreNuevoEstilo);
         listView = (ListView)findViewById(R.id.listviewAtributosEstilos);
+        adaptarTamanyoListView();
 
         listarTipoAtributosEstilo();
     }
@@ -198,4 +205,14 @@ public class CrearNuevoEstiloActivity extends AppCompatActivity {
         consultasJSONGet(Constantes.INSERTAR_ESTILO, map, "3");
     }
 
+    public void adaptarTamanyoListView(){
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = height/2;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
 }

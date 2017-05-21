@@ -1,6 +1,5 @@
 package com.bemen3.albert.alcarol;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -9,14 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bemen3.albert.alcarol.entidades.Atributo;
 import com.bemen3.albert.alcarol.entidades.Estilo;
+import com.bemen3.albert.alcarol.entidades.Personaje;
 import com.bemen3.albert.alcarol.entidades.Usuario;
 
 import org.json.JSONException;
@@ -25,47 +25,58 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
-public class MisEstilosActivity extends AppCompatActivity {
+public class CrearNuevoPersonajeActivity extends AppCompatActivity {
 
-    private TextView tvTesting;
-    private Usuario usuarioApp;
-    private ArrayList<Estilo> listaEstilos;
     private ListView listView;
-    private AdaptadorEstilos adapter;
+    Personaje personaje;
+    private Estilo estiloActual;
+    private Usuario usuarioApp;
+    private ArrayList<HashMap<String, String>> listaAtributos;
     private int height;
     private int width;
+    private AdaptadorAtributosPersonaje adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mis_estilos);
+        setContentView(R.layout.activity_crear_nuevo_personaje);
 
-
-
+        estiloActual = GlobalParam.estiloActual;
         usuarioApp = GlobalParam.usuarioApp;
 
-        tvTesting = (TextView)findViewById(R.id.titulo_activity);
-        tvTesting.setText(tvTesting.getText()+"\n usuario:"+usuarioApp.getNombre()+",id: "+GlobalParam.ID_USUARIO);
 
-        listaEstilos = new ArrayList<>();
-        listView = (ListView)findViewById(R.id.listviewEstilos);
+        listView = (ListView)findViewById(R.id.listviewAtributosCreacionPersonaje);
         adaptarTamanyoListView();
+        cargarListView();
+    }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    public void cargarListView(){
+        personaje = new Personaje();
+        personaje.setUserId(usuarioApp.getId());
+        personaje.setEstilo(estiloActual);
+        listaAtributos = new ArrayList<>();
+
+        inicializarAtributosPersonaje();
+
+        adapter = new AdaptadorAtributosPersonaje(this, listaAtributos);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Object o = listView.getItemAtPosition(position);
-                Estilo estilo=(Estilo) o;//As you are using Default String Adapter
-                GlobalParam.estiloActual = estilo;
-                Intent intent = new Intent(getApplicationContext(), ListadoHojasPersonajeActivity.class);
-                startActivity(intent);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                //listView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+                //Object o = listView.getItemAtPosition(position);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
-
-        cargarListaEstilos();
-
     }
 
     public void adaptarTamanyoListView(){
@@ -79,17 +90,69 @@ public class MisEstilosActivity extends AppCompatActivity {
         listView.requestLayout();
     }
 
-    public void cargarListaEstilos(){
-        //case 1: queremos solo cargar id y nombre de cada estilo.
+    public void inicializarAtributosPersonaje(){
 
-        HashMap<String, String> map = new HashMap<>();// Mapeo previo
 
-        map.put("id_usuario", GlobalParam.ID_USUARIO);
-        map.put("tipoConsulta", "1");
+        if(estiloActual.getCarisma().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("carisma","");
+        }
+        if(estiloActual.getConstitucion().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("constitucion","");
+        }
+        if(estiloActual.getDestreza().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("destreza","");
+        }
+        if(estiloActual.getFuerza().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("fuerza","");
+        }
+        if(estiloActual.getInteligencia().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("inteligencia","");
+        }
+        if(estiloActual.getMana().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("mana","");
+        }
+        if(estiloActual.getPercepcion().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("percepcion","");
+        }
+        if(estiloActual.getSabiduria().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("sabiduria","");
+        }
+        if(estiloActual.getVida().equalsIgnoreCase("S")){
+            personaje.getAtributos().put("vida","");
+        }
 
-        consultasJSONGet(Constantes.METODOS_ESTILOS, map, "1");
+        Iterator it = personaje.getAtributos().entrySet().iterator();
+        while (it.hasNext())
+        {
+            Map.Entry mapEntry = (Map.Entry) it.next();
+            String keyValue = (String) mapEntry.getKey();
+            String value = (String) mapEntry.getValue();
+
+            System.out.println("Key: "+keyValue+",value: "+value);
+
+            HashMap<String, String> newMap = new HashMap<>();
+            newMap.put(keyValue,value);
+            listaAtributos.add(newMap);
+
+        }
+
     }
 
+    public void guardarDatosNewPersonaje(View view){
+        for (HashMap<String, String> auxMap :
+                listaAtributos) {
+            Iterator it = auxMap.entrySet().iterator();
+            while (it.hasNext())
+            {
+                Map.Entry mapEntry = (Map.Entry) it.next();
+                String keyValue = (String) mapEntry.getKey();
+                String value = (String) mapEntry.getValue();
+
+                System.out.println("Key: "+keyValue+",value: "+value);
+                personaje.getAtributos().put(keyValue,value);
+            }
+        }
+    }
 
     public void consultasJSONGet(String enlace, Map map, final String tipoConsulta){
         String newURL = enlace + "?";
@@ -113,7 +176,6 @@ public class MisEstilosActivity extends AppCompatActivity {
 
         //newURL +="username="+map.get("username")+"&password="+map.get("password");
 
-
         GestionPeticionesHTTP colaPeticiones = null;
 
         colaPeticiones.getInstance(this).addToRequestQueue(
@@ -136,12 +198,13 @@ public class MisEstilosActivity extends AppCompatActivity {
                                     }else{
                                         System.out.println("Procesando Respuesta");
                                         switch (tipoConsulta){
-                                            case "1":
+                                            case "2":
 
-                                                procesarRespuestaEstilosSoloIDNombre(response);
+                                                //procesarRespuestaEstilos(response);
 
                                                 break;
-                                            case "2":
+                                            case "3":
+                                                Toast.makeText(getApplicationContext(), "Estilo guardado satisfactóriamente.", Toast.LENGTH_SHORT).show();
                                                 break;
                                         }
                                     }
@@ -168,55 +231,6 @@ public class MisEstilosActivity extends AppCompatActivity {
         );
     }
 
-    private void procesarRespuestaEstilosSoloIDNombre(JSONObject response) {
-        try {
-            String stringArray = "resultadoEstilo";
 
-            boolean final_lectura = false;
-            int count = 0;
-
-            do{
-                String aux = stringArray+count;
-                if(response.has(aux)){
-                    //JSONArray arrayActual = response.getJSONArray(aux);
-                    JSONObject c = response.getJSONObject(aux);
-                    System.out.println("Auxiliar: "+aux);
-                    Estilo estilo = new Estilo();
-                    estilo.setNombre(c.getString("nombre"));
-                    estilo.setId(c.getString("id"));
-                    estilo.setUserId(c.getString("id_usuario"));
-
-                    estilo.setCarisma(c.has("carisma")?c.getString("carisma"):"N");
-                    estilo.setConstitucion(c.has("constitucion")?c.getString("constitucion"):"N");
-                    estilo.setDestreza(c.has("destreza")?c.getString("destreza"):"N");
-                    estilo.setFuerza(c.has("fuerza")?c.getString("fuerza"):"N");
-                    estilo.setInteligencia(c.has("inteligencia")?c.getString("inteligencia"):"N");
-                    estilo.setMana(c.has("mana")?c.getString("mana"):"N");
-                    estilo.setVida(c.has("vida")?c.getString("vida"):"N");
-                    estilo.setPercepcion(c.has("percepcion")?c.getString("percepcion"):"N");
-                    estilo.setSabiduria(c.has("sabiduria")?c.getString("sabiduria"):"N");
-
-                    listaEstilos.add(estilo);
-                    count++;
-                }else{
-                    System.out.println("No existe "+aux);
-                    count = 0;
-                    final_lectura = true;
-                }
-            }while(!final_lectura);
-
-            adapter = new AdaptadorEstilos(this, listaEstilos);
-            listView.setAdapter(adapter);
-        } catch (JSONException e) {
-
-            System.out.println("Aqui hay un error, "+e);
-
-        }
-    }
-
-    public void crearNuevoEstilo(View view){
-        Intent intent = new Intent(getApplicationContext(), CrearNuevoEstiloActivity.class);
-        startActivity(intent);
-    }
 
 }

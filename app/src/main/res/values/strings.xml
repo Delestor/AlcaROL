@@ -6,4 +6,6 @@
     <string name="crear_nuevo_estilo">Creación Nuevo Estilo</string>
     <string name="guardar_estilo">Guardar</string>
     <string name="entra_nombre_nuevo_estilo">Nombre del Estilo</string>
+    <string name="mis_hojas_personaje">Hojas de Personaje</string>
+    <string name="crear_nuevo_personaje">Crear Nuevo Personaje</string>
 </resources>

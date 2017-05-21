@@ -18,7 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MisEstilosActivity" />
-        <activity android:name=".CrearNuevoEstiloActivity"></activity>
+        <activity android:name=".CrearNuevoEstiloActivity" />
+        <activity android:name=".ListadoHojasPersonajeActivity" />
+        <activity android:name=".CrearNuevoPersonajeActivity"></activity>
     </application>
 
 </manifest>

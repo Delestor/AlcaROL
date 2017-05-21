@@ -96,7 +96,6 @@ public class AdaptadorEstilos extends ArrayAdapter<Estilo> {
         return(item);
     }
 
-
 }
 
 class VistaTagMetre {
