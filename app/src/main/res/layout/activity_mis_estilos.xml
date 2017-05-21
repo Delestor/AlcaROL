@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"/>
 
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/listviewEstilos"
         android:layout_width="wrap_content"
         android:layout_height="120pt"
         android:layout_below="@+id/titulo_activity"
@@ -26,11 +26,12 @@
 
     <Button
         android:id="@+id/btnNuevoEstilo"
-        android:layout_below="@id/listview"
+        android:layout_below="@id/listviewEstilos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nuevo_estilo"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="crearNuevoEstilo"/>
 
     <Button
         android:id="@+id/btnMisGrupos"

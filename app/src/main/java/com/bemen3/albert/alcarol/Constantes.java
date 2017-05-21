@@ -21,12 +21,7 @@ public class Constantes {
 
         /*** URLs del Web Service ***/
         public static final String LOG_IN = IP + PUERTO_HOST +rutaPadre+ "/login_usuario.php";
-
-        public static final String ACCEDER_CUINER_PLATS = IP + PUERTO_HOST +rutaPadre+ "/cuiner/llistatPlats.php";
-        public static final String ACCEDER_MAITRE_PLATS = IP + PUERTO_HOST +rutaPadre+ "/maitre/llistatPlats.php";
-
-        /*** Clave para el valor extra que representa al identificador de una cita ***/
-        public static final String EXTRA_ID = "IDEXTRA";
+        public static final String METODOS_ESTILOS = IP + PUERTO_HOST +rutaPadre+ "/estilos/listarEstilos.php";
 
 
 
