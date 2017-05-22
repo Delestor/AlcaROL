@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class CrearNuevoPersonajeActivity extends AppCompatActivity {
     private int height;
     private int width;
     private AdaptadorAtributosPersonaje adapter;
+    private EditText etNombrePersonaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class CrearNuevoPersonajeActivity extends AppCompatActivity {
 
         estiloActual = GlobalParam.estiloActual;
         usuarioApp = GlobalParam.usuarioApp;
+        etNombrePersonaje = (EditText)findViewById(R.id.etNombreNuevoPersonaje);
 
 
         listView = (ListView)findViewById(R.id.listviewAtributosCreacionPersonaje);
@@ -64,19 +67,6 @@ public class CrearNuevoPersonajeActivity extends AppCompatActivity {
         adapter = new AdaptadorAtributosPersonaje(this, listaAtributos);
         listView.setAdapter(adapter);
 
-        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                //listView.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
-                //Object o = listView.getItemAtPosition(position);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     public void adaptarTamanyoListView(){
@@ -139,19 +129,38 @@ public class CrearNuevoPersonajeActivity extends AppCompatActivity {
     }
 
     public void guardarDatosNewPersonaje(View view){
-        for (HashMap<String, String> auxMap :
-                listaAtributos) {
-            Iterator it = auxMap.entrySet().iterator();
-            while (it.hasNext())
-            {
-                Map.Entry mapEntry = (Map.Entry) it.next();
-                String keyValue = (String) mapEntry.getKey();
-                String value = (String) mapEntry.getValue();
 
-                System.out.println("Key: "+keyValue+",value: "+value);
-                personaje.getAtributos().put(keyValue,value);
+        String nombrePJ = etNombrePersonaje.getText().toString();
+        if(!nombrePJ.equalsIgnoreCase("")){
+            for (HashMap<String, String> auxMap :
+                    listaAtributos) {
+                Iterator it = auxMap.entrySet().iterator();
+                while (it.hasNext())
+                {
+                    Map.Entry mapEntry = (Map.Entry) it.next();
+                    String keyValue = (String) mapEntry.getKey();
+                    String value = (String) mapEntry.getValue();
+
+                    System.out.println("Key: "+keyValue+",value: "+value);
+                    personaje.getAtributos().put(keyValue,value);
+                }
             }
+
+            personaje.setNombre(nombrePJ);
+
+            HashMap<String, String> map = new HashMap<String, String>();
+
+            map.put("id_usuario", personaje.getUserId());
+            map.put("id_estilo", personaje.getEstilo().getId());
+            map.put("nombre", personaje.getNombre());
+            map.putAll(personaje.getAtributos());
+
+            consultasJSONGet(Constantes.INSERTAR_PERSONAJE, map, "0");
+
+        }else{
+            Toast.makeText(getApplicationContext(), "Falta darle un nombre a tu nuevo Personaje",Toast.LENGTH_LONG);
         }
+
     }
 
     public void consultasJSONGet(String enlace, Map map, final String tipoConsulta){
@@ -195,16 +204,16 @@ public class CrearNuevoPersonajeActivity extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(), mensaje,
                                                 Toast.LENGTH_LONG).show();
+
+                                        if(estado.equalsIgnoreCase("1"))CrearNuevoPersonajeActivity.super.onBackPressed();
                                     }else{
                                         System.out.println("Procesando Respuesta");
                                         switch (tipoConsulta){
-                                            case "2":
-
+                                            case "0":
                                                 //procesarRespuestaEstilos(response);
-
                                                 break;
-                                            case "3":
-                                                Toast.makeText(getApplicationContext(), "Estilo guardado satisfactóriamente.", Toast.LENGTH_SHORT).show();
+                                            case "1":
+                                                //Toast.makeText(getApplicationContext(), "Estilo guardado satisfactóriamente.", Toast.LENGTH_SHORT).show();
                                                 break;
                                         }
                                     }

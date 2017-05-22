@@ -106,6 +106,8 @@ public class CrearNuevoEstiloActivity extends AppCompatActivity {
 
                                         Toast.makeText(getApplicationContext(), mensaje,
                                                 Toast.LENGTH_LONG).show();
+
+                                        if(estado.equalsIgnoreCase("1"))CrearNuevoEstiloActivity.super.onBackPressed();
                                     }else{
                                         System.out.println("Procesando Respuesta");
                                         switch (tipoConsulta){
@@ -115,8 +117,7 @@ public class CrearNuevoEstiloActivity extends AppCompatActivity {
 
                                                 break;
                                             case "3":
-                                                Toast.makeText(getApplicationContext(), "Estilo guardado satisfactóriamente.", Toast.LENGTH_SHORT).show();
-                                                CrearNuevoEstiloActivity.super.onBackPressed();
+                                                //Toast.makeText(getApplicationContext(), "Estilo guardado satisfactóriamente.", Toast.LENGTH_SHORT).show();
                                                 break;
                                         }
                                     }
