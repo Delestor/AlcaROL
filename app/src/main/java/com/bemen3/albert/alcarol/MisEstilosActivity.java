@@ -68,6 +68,13 @@ public class MisEstilosActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        listaEstilos = new ArrayList<>();
+        cargarListaEstilos();
+    }
+
     public void adaptarTamanyoListView(){
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -200,6 +207,8 @@ public class MisEstilosActivity extends AppCompatActivity {
                     count++;
                 }else{
                     System.out.println("No existe "+aux);
+                    if(count==0)
+                        Toast.makeText(getApplicationContext(), "No hay Estilos Creados", Toast.LENGTH_SHORT).show();
                     count = 0;
                     final_lectura = true;
                 }

@@ -24,7 +24,7 @@ public class Constantes {
         public static final String METODOS_ESTILOS = IP + PUERTO_HOST +rutaPadre+ "/estilos/listarEstilos.php";
         public static final String INSERTAR_ESTILO = IP + PUERTO_HOST +rutaPadre+ "/estilos/insertarNuevoEstilo.php";
         public static final String INSERTAR_PERSONAJE = IP + PUERTO_HOST +rutaPadre+ "/personajes/insertarNuevoPersonaje.php";
-
+        public static final String LISTAR_PERSONAJES = IP + PUERTO_HOST +rutaPadre+ "/personajes/listarPersonajes.php";
 
 
 
