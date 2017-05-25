@@ -1,7 +1,9 @@
 package com.bemen3.albert.alcarol;
 
 /**
- * Created by alber on 19/05/2017.
+ * Constantes Globales para toda la aplicación
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
  */
 
 public class Constantes {

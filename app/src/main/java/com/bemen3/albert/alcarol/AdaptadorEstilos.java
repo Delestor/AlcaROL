@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Jandro on 01/02/2017.
+ * Adaptador que gestiona los elementos del listview de tipos Estilo
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
  */
 
 public class AdaptadorEstilos extends ArrayAdapter<Estilo> {

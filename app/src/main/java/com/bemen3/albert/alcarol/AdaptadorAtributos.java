@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by alber on 21/05/2017.
+ * Clase que gestiona cada uno de los elementos de un listview de Atributos.
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
  */
 
 public class AdaptadorAtributos extends ArrayAdapter<Atributo> {

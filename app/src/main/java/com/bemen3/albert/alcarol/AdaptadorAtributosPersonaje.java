@@ -22,7 +22,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by alber on 21/05/2017.
+ * Clase que gestiona los elementos de un listView que Mostrarán un listado de los atributos
+ * para cada personaje, y guardarán los valores introducidos por el usuario para cada atributo.
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
  */
 
 public class AdaptadorAtributosPersonaje extends ArrayAdapter<HashMap<String,String>> {

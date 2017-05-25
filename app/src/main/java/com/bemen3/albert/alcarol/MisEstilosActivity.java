@@ -27,6 +27,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * Clase que gestiona la pantalla de Listado de Estilos
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
+ */
 public class MisEstilosActivity extends AppCompatActivity {
 
     private TextView tvTesting;

@@ -29,6 +29,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Clase que se encarga de la vista para Crear nuevos Estilos.
+ * @author Albert Cadena
+ * @version 26/05/2017
+ */
 public class CrearNuevoEstiloActivity extends AppCompatActivity {
 
     private ArrayList<Atributo> listaAtributos;

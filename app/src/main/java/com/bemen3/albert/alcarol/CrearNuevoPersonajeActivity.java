@@ -29,6 +29,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Clase que gestiona la pantalla de Creación de nuevo personajes.
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
+ */
 public class CrearNuevoPersonajeActivity extends AppCompatActivity {
 
     private ListView listView;

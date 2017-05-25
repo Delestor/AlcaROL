@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by alber on 25/05/2017.
+ * Adaptador que gestiona los elementos del listview de tipo Personaje
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
  */
 
 public class AdaptadorPersonajes extends ArrayAdapter<Personaje> {

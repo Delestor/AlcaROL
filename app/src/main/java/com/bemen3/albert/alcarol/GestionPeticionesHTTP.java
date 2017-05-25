@@ -8,7 +8,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 /**
- * Created by Albert on 03/04/2017.
+ * Clase encargada de gestionar las peticiones HTTP con el WebService.
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
  */
 
 public final class GestionPeticionesHTTP {

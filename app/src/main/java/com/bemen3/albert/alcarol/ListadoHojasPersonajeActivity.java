@@ -26,6 +26,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * Clase que gestiona la vista de Listado de Hojas de Personajes
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
+ */
 public class ListadoHojasPersonajeActivity extends AppCompatActivity {
 
     private TextView etTituloActivity;

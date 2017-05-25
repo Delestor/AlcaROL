@@ -20,6 +20,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Clase que gestiona la pantalla de inicio (Log In.)
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     private EditText etUsername;

@@ -4,7 +4,9 @@ import com.bemen3.albert.alcarol.entidades.Estilo;
 import com.bemen3.albert.alcarol.entidades.Usuario;
 
 /**
- * Created by alber on 19/05/2017.
+ * Clase que guarda variables Globales del sistema
+ * @author Albert Cadena
+ * @version 26/05/2017 1.0
  */
 
 public class GlobalParam {
