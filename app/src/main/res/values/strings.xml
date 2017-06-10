@@ -2,6 +2,7 @@
     <string name="app_name">AlcaROL</string>
     <string name="mis_estilos">Mis estilos</string>
     <string name="mis_grupos">Mis Grupos</string>
+    <string name="mi_personaje">Datos Personaje</string>
     <string name="nuevo_estilo">Nuevo Estilo</string>
     <string name="crear_nuevo_estilo">Creación Nuevo Estilo</string>
     <string name="guardar_estilo">Guardar</string>
@@ -9,4 +10,5 @@
     <string name="mis_hojas_personaje">Hojas de Personaje</string>
     <string name="crear_nuevo_personaje">Crear Nuevo Personaje</string>
     <string name="entra_nombre_nuevo_personaje">Nombre Nuevo Personaje</string>
+    <string name="nombre_personaje">Nombre Personaje</string>
 </resources>

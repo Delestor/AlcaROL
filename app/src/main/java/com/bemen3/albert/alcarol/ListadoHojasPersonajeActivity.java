@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,17 @@ public class ListadoHojasPersonajeActivity extends AppCompatActivity {
 
         listView = (ListView)findViewById(R.id.listViewListadoHojasPersonaje);
         adaptarTamanyoListView();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Object o = listView.getItemAtPosition(position);
+                Personaje personaje=(Personaje) o;//As you are using Default String Adapter
+                GlobalParam.personajeActual = personaje;
+                Intent intent = new Intent(getApplicationContext(), EditarPersonajeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         cargarListaPersonajes();
     }

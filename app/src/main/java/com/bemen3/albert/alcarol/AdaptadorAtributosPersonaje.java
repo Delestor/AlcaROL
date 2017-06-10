@@ -100,6 +100,7 @@ public class AdaptadorAtributosPersonaje extends ArrayAdapter<HashMap<String,Str
             String value = (String) mapEntry.getValue();
 
             vistaTag.nombre.setText(keyValue);
+            vistaTag.valor.setText(value);
 
             vistaTag.valor.addTextChangedListener(new TextWatcher() {
                 @Override

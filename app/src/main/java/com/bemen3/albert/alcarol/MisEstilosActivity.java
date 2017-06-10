@@ -1,10 +1,15 @@
 package com.bemen3.albert.alcarol;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -56,6 +61,7 @@ public class MisEstilosActivity extends AppCompatActivity {
 
         listaEstilos = new ArrayList<>();
         listView = (ListView)findViewById(R.id.listviewEstilos);
+        registerForContextMenu(listView);
         adaptarTamanyoListView();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -233,4 +239,48 @@ public class MisEstilosActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if(v.getId() == listView.getId()){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu, menu);
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+
+            case R.id.borrar:
+
+                new AlertDialog.Builder(this)
+                        .setTitle("¿Desea eliminar el Estilo seleccionado?")
+                        .setMessage(listaEstilos.get(info.position).getNombre().toString())
+                        .setCancelable(false)
+                        .setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //operacionActual=BORRAR;
+                                //llamamos al metodo para realizar el update en la base de datos, pasandole los nuevos valores por parametro
+                                //gestionarPlato(listaPlatos.get(info.position).getId().toString(), "", "","" );
+                                //getData();
+                                HashMap<String, String> map = new HashMap<>();// Mapeo previo
+
+                                map.put("id_usuario", GlobalParam.ID_USUARIO);
+                                map.put("id_estilo", listaEstilos.get(info.position).getId());
+                                consultasJSONGet(Constantes.BORRAR_ESTILO, map, "3");
+                                listaEstilos.remove(info.position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("Volver", null)
+                        .show();
+
+//                Toast.makeText(getApplicationContext(), "borrar "+ item.getItemId(), Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
 }
